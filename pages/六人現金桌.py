@@ -1,6 +1,8 @@
 import streamlit as st
 import openai
 import config as c
+import time
+
 
 # Constants
 OTHER_PLAYER_WIDTH = 5
@@ -115,6 +117,7 @@ if st.session_state.River:
         river_cardrank = st.selectbox("River Rank", c.CARD_RANKS, index=0)
         river_cardsuit = st.selectbox("River Suit", c.CARD_SUITS, index=0)
 
+
 # Actions
 st.write("----")
 st.write("#### Actions:")
@@ -167,7 +170,7 @@ for j in range(len(c.STEPS)):
                 )
 
 
-# Output
+# AI Suggestions
 st.write("----")
 player_words = f"{player_position} {player_cardrank1}{player_cardsuit1}{player_cardrank2}{player_cardsuit2}({player_stack}), "
 for i in range(len(st.session_state.positions)):
@@ -210,15 +213,17 @@ if st.session_state.River:
 words = f"{player_words}{preflop_words}{flop_words}{turn_words}{river_words}"
 st.write(words)
 
-col1, col2 = st.columns([1, 6])
+col1, col2 = st.columns([1, 5])
 with col1:
     if st.button("打法建議"):
         st.session_state.history.append({"role": "user", "content": words})
 
-        response = openai.chat.completions.create(
-            model=ai_model,
-            messages=st.session_state.history,
-        )
+        with st.spinner("計算中..."):
+            response = openai.chat.completions.create(
+                model=ai_model,
+                messages=st.session_state.history,
+            )
+            time.sleep(1)
 
         assistant_message = response.choices[0].message.content
         st.session_state.history.append(

@@ -16,7 +16,7 @@ st.markdown(
 2. 輸入你的 **手牌**（Rank + Suit）  
 3. 選擇你的 **位置**(Position) 與 **籌碼量**(Stack)
 4. 新增其他玩家的 **位置** 與 **籌碼**  
-5. 根據牌局進行(Community Cards)，設定 **公共牌 (Flop / Turn / River)**  
+5. 根據牌局進行，設定 **公共牌 (Flop / Turn / River)**  
 6. 新增每個玩家的 **行動線** (Check, Bet...)  
 7. 點擊 **打法建議**，系統將給出對應的 **GTO 建議比例**
 
