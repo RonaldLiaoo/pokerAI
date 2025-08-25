@@ -1,7 +1,7 @@
 ---
-# 🃏 6-MAX CASH GAME GTO 助手
+# 🃏 POKER AI GTO 助手
 
-這是一個基於 **Streamlit + OpenAI API** 的德州撲克 **六人現金桌 (6-max cash game)** GTO 助手。
+這是一個基於 **Streamlit + OpenAI API** 的德州撲克 GTO 助手。
 你可以輸入自己的手牌、位置、籌碼量，以及其他玩家的行動路線，系統會依照 **GTO 策略** 給出行動比例建議（例如 `Check (60%)、Bet 1/3 Pot (30%)、Bet 1/2 Pot (10%)`），幫助你訓練與研究決策。
 ---
 
