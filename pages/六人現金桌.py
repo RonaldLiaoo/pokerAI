@@ -31,7 +31,9 @@ if "actions" not in st.session_state:
 if "history" not in st.session_state:
     st.session_state.history = [{"role": "system", "content": system_message}]
 
+
 st.title("6-MAX CASH GAME")
+
 
 # Player
 col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
@@ -63,7 +65,7 @@ for i, col in enumerate(cols):
                 st.session_state.stacks.append(c.STACK)
                 st.rerun()
             if (
-                st.button("Del", key=f"del_player_{i}")
+                st.button("🗑️", key=f"delete_player_{i}")
                 and len(st.session_state.positions) > 0
             ):
                 if len(st.session_state.positions) > 0:
@@ -135,7 +137,7 @@ for j in range(len(c.STEPS)):
                     st.session_state.actions[c.STEPS[j]]["Amount"].append(c.STACK)
                     st.rerun()
                 if (
-                    st.button("Del", key=f"del_action_{c.STEPS[j]}_{i}")
+                    st.button("🗑️", key=f"delete_action_{c.STEPS[j]}_{i}")
                     and len(st.session_state.actions[c.STEPS[j]]["Position"]) > 0
                 ):
                     st.session_state.actions[c.STEPS[j]]["Position"].pop()

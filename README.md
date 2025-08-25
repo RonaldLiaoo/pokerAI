@@ -89,3 +89,11 @@ streamlit run main.py
 - 提供 **Solver 模擬結果比對**
 
 ---
+
+## ⚙️ 注意事項
+
+- 請先在 `.streamlit/secrets.toml` 中設定你的 OpenAI API Key
+- 本工具僅提供 **輔助學習**，實際牌局請自行判斷
+- **本工具不提倡任何形式的賭博行為**，請勿將此程式用於真實金錢下注
+
+---
