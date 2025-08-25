@@ -89,9 +89,3 @@ streamlit run main.py
 - 提供 **Solver 模擬結果比對**
 
 ---
-
-## 📜 License
-
-MIT License
-
----
