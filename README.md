@@ -74,6 +74,8 @@ streamlit run main.py
 
 ## 🖥️ 使用方式
 
+![位置圖](images/Position.png)
+
 1. 選擇自己的 **手牌、花色、位置與籌碼**
 2. 新增其他玩家的 **位置與籌碼**
 3. 輸入各街道（Pre-Flop / Flop / Turn / River）的行動
