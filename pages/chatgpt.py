@@ -38,8 +38,3 @@ for message in st.session_state.history:
         st.chat_message("user", avatar="🪄").write(message["content"])
     elif message["role"] == "assistant":
         st.chat_message("assistant", avatar="✨").write(message["content"])
-
-# for message in st.session_state.history:
-#     if message["role"] == "assistant":
-#         # st.chat_message("assistant", avatar="✨").write(message["content"])
-#         st.write(f"```\n{message["content"]}")

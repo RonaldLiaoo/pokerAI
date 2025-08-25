@@ -164,7 +164,7 @@ for j in range(len(c.STEPS)):
                     key=f"action_{c.STEPS[j]}_Amount_{i}",
                 )
 
-# HJ 9 ♥️9♦️(100), HJ bet 2BB, BU(100) call, flop K♥️Q♥️2♠️
+
 # Output
 st.write("----")
 player_words = f"{player_position} {player_cardrank1}{player_cardsuit1}{player_cardrank2}{player_cardsuit2}({player_stack}), "
@@ -208,20 +208,26 @@ if st.session_state.River:
 words = f"{player_words}{preflop_words}{flop_words}{turn_words}{river_words}"
 st.write(words)
 
-if st.button("打法建議"):
-    st.session_state.history.append({"role": "user", "content": words})
+col1, col2 = st.columns([1, 6])
+with col1:
+    if st.button("打法建議"):
+        st.session_state.history.append({"role": "user", "content": words})
 
-    response = openai.chat.completions.create(
-        model=ai_model,
-        messages=st.session_state.history,
-    )
+        response = openai.chat.completions.create(
+            model=ai_model,
+            messages=st.session_state.history,
+        )
 
-    assistant_message = response.choices[0].message.content
-    st.session_state.history.append({"role": "assistant", "content": assistant_message})
-    st.rerun()
+        assistant_message = response.choices[0].message.content
+        st.session_state.history.append(
+            {"role": "assistant", "content": assistant_message}
+        )
+        st.rerun()
+with col2:
+    if st.button("🗑️"):
+        st.session_state.history = [{"role": "system", "content": system_message}]
+        st.rerun()
 
 for message in st.session_state.history:
-    # if message["role"] == "user":
-    #     st.chat_message("user", avatar="🪄").write(message["content"])
     if message["role"] == "assistant":
         st.chat_message("assistant", avatar="✨").write(message["content"])

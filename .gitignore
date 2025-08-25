@@ -26,3 +26,6 @@ ehthumbs.db
 # Ignore environment files
 .streamlit/secrets.toml
 *.env
+
+# Ignore specific files
+pages/chatgpt.py
