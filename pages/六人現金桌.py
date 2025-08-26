@@ -172,46 +172,46 @@ for j in range(len(c.STEPS)):
 
 # AI Suggestions
 st.write("----")
-player_words = f"{player_position} {player_cardrank1}{player_cardsuit1}{player_cardrank2}{player_cardsuit2}({player_stack}), "
+player_words = f"{player_position} {player_cardrank1}{player_cardsuit1}{player_cardrank2}{player_cardsuit2}({player_stack})"
 for i in range(len(st.session_state.positions)):
-    player_words += f"{st.session_state.positions[i]}({st.session_state.stacks[i]}), "
+    player_words += f", {st.session_state.positions[i]}({st.session_state.stacks[i]})"
 
 preflop_words = ""
 for i in range(len(st.session_state.actions["Pre-Flop"]["Position"])):
     if st.session_state.actions["Pre-Flop"]["Action"][i] == "Bet":
-        preflop_words += f"{st.session_state.actions['Pre-Flop']['Position'][i]} Bet {st.session_state.actions['Pre-Flop']['Amount'][i]}, "
+        preflop_words += f", {st.session_state.actions['Pre-Flop']['Position'][i]} Bet {st.session_state.actions['Pre-Flop']['Amount'][i]}"
     else:
-        preflop_words += f"{st.session_state.actions['Pre-Flop']['Position'][i]} {st.session_state.actions['Pre-Flop']['Action'][i]}, "
+        preflop_words += f", {st.session_state.actions['Pre-Flop']['Position'][i]} {st.session_state.actions['Pre-Flop']['Action'][i]}, "
 
 flop_words = ""
 if st.session_state.Flop:
-    flop_words += f"flop {flop_cardrank1}{flop_cardsuit1}{flop_cardrank2}{flop_cardsuit2}{flop_cardrank3}{flop_cardsuit3}"
+    flop_words += f", flop {flop_cardrank1}{flop_cardsuit1}{flop_cardrank2}{flop_cardsuit2}{flop_cardrank3}{flop_cardsuit3}"
     for i in range(len(st.session_state.actions["Flop"]["Position"])):
         if st.session_state.actions["Flop"]["Action"][i] == "Bet":
-            flop_words += f"{st.session_state.actions['Flop']['Position'][i]} Bet {st.session_state.actions['Flop']['Amount'][i]}, "
+            flop_words += f", {st.session_state.actions['Flop']['Position'][i]} Bet {st.session_state.actions['Flop']['Amount'][i]}"
         else:
-            flop_words += f"{st.session_state.actions['Flop']['Position'][i]} {st.session_state.actions['Flop']['Action'][i]}, "
+            flop_words += f", {st.session_state.actions['Flop']['Position'][i]} {st.session_state.actions['Flop']['Action'][i]}"
 
 turn_words = ""
 if st.session_state.Turn:
-    turn_words += f"turn {turn_cardrank}{turn_cardsuit}"
+    turn_words += f", turn {turn_cardrank}{turn_cardsuit}"
     for i in range(len(st.session_state.actions["Turn"]["Position"])):
         if st.session_state.actions["Turn"]["Action"][i] == "Bet":
-            turn_words += f"{st.session_state.actions['Turn']['Position'][i]} Bet {st.session_state.actions['Turn']['Amount'][i]}, "
+            turn_words += f", {st.session_state.actions['Turn']['Position'][i]} Bet {st.session_state.actions['Turn']['Amount'][i]}"
         else:
-            turn_words += f"{st.session_state.actions['Turn']['Position'][i]} {st.session_state.actions['Turn']['Action'][i]}, "
+            turn_words += f", {st.session_state.actions['Turn']['Position'][i]} {st.session_state.actions['Turn']['Action'][i]}"
 
 river_words = ""
 if st.session_state.River:
-    river_words += f"river {river_cardrank}{river_cardsuit}"
+    river_words += f", river {river_cardrank}{river_cardsuit}"
     for i in range(len(st.session_state.actions["River"]["Position"])):
         if st.session_state.actions["River"]["Action"][i] == "Bet":
-            river_words += f"{st.session_state.actions['River']['Position'][i]} Bet {st.session_state.actions['River']['Amount'][i]}, "
+            river_words += f", {st.session_state.actions['River']['Position'][i]} Bet {st.session_state.actions['River']['Amount'][i]}"
         else:
-            river_words += f"{st.session_state.actions['River']['Position'][i]} {st.session_state.actions['River']['Action'][i]}, "
+            river_words += f", {st.session_state.actions['River']['Position'][i]} {st.session_state.actions['River']['Action'][i]}"
 
-words = f"{player_words}{preflop_words}{flop_words}{turn_words}{river_words}"
-st.write(words)
+words = f"\n{player_words}{preflop_words}{flop_words}{turn_words}{river_words}"
+st.markdown(f"目前牌局：\n{words}")
 
 col1, col2 = st.columns([1, 5])
 with col1:
@@ -236,5 +236,7 @@ with col2:
         st.rerun()
 
 for message in st.session_state.history:
+    if message["role"] == "user":
+        st.chat_message("user", avatar="🃏").write(message["content"])
     if message["role"] == "assistant":
         st.chat_message("assistant", avatar="✨").write(message["content"])
