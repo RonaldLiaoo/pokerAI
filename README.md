@@ -85,8 +85,8 @@ streamlit run main.py
 
 ## 📌 待改進
 
-- 支援 **不同桌型 (9-max, HU)**
-- 提供 **Solver 模擬結果比對**
+- 支援 **不同桌型 (9-max, 錦標賽)**
+- 提供 **Poker-Bot單人遊玩**
 
 ---
 
