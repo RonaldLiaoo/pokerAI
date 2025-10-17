@@ -26,7 +26,8 @@
 ├── .env                    # 環境變數 (可存放 API Key，但建議用 Streamlit secret)
 ├── README.md               # 說明文件
 ├── pages/
-│   └── 六人現金桌.py        # Streamlit Pages 子頁面
+│   ├── home.py             # Streamlit Pages 首頁
+│   └── six_max_cashgame.py # Streamlit Pages 六人現金桌
 └── .streamlit/
     ├── config.toml         # Streamlit 設定檔
     └── secret.toml         # API Key 及敏感資訊

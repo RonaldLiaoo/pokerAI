@@ -8,9 +8,16 @@ import time
 OTHER_PLAYER_WIDTH = 5
 ACTION_WIDTH = 4
 openai.api_key = st.secrets["OPENAI_API_KEY"]
-ai_model = "gpt-4o"
-system_message = "你扮演德州撲克GTO，我打的是六人現金桌，我會給你我的手牌、位置、籌碼，各個玩家的位置及籌碼，以及各個玩家的行動線及籌碼，依照GTO給我各行動線的比例，注意指需要給我比例不需要分析，例如Check(60%)、Bet1/3Pot(30%)、Bet1/2Pot(10%)。"
-
+ai_model = "gpt-4o" # gpt-4o is much more efficient then gpt-5
+# system_message = "你扮演德州撲克GTO，我打的是六人現金桌，我會給你我的手牌、位置、籌碼，\
+#                   各個玩家的位置及籌碼，以及各個玩家的行動線及籌碼，依照GTO給我各行動線的比例，\
+#                   注意指需要給我比例不需要分析，例如Check(60%)、Bet1/3Pot(30%)、Bet1/2Pot(10%)。"
+system_message="Act as a Texas Hold’em GTO solver for a 6-max cash game.\
+                Given my hole cards, position, stack size, and the other players’ positions, stacks, and action lines,\
+                output only the GTO action frequencies for my spot.\
+                Output format only:\
+                Action (percentage)\
+                No explanations, no reasoning."
 
 # Session state
 if "Flop" not in st.session_state:
